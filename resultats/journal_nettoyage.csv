@@ -1,0 +1,41 @@
+﻿fichier;element;niveau;probleme;traitement
+marche_lagune.csv;fichier;INFO;BOM UTF-8 et fins de ligne CRLF (export Excel français);"lu en utf-8-sig, séparateur ';'"
+marche_lagune.csv;ligne 2 (ML-1000);INFO;article en rupture;écarté des comparaisons
+marche_lagune.csv;ligne 4 (ML-1014);INFO;article en rupture;écarté des comparaisons
+marche_lagune.csv;ligne 5 (ML-1021);ATTENTION;ancien prix (88 700) inférieur au prix actuel (779 000);"ancien prix (prix barré) jamais utilisé ; prix actuel contrôlé avec l'historique"
+marche_lagune.csv;ligne 9 (ML-1049);INFO;article en rupture;écarté des comparaisons
+marche_lagune.csv;ligne 14 (ML-1000);ERREUR;doublon exact;ligne ignorée (première occurrence conservée)
+marche_lagune.csv;ligne 15 (ML-1084);INFO;article en rupture;écarté des comparaisons
+marche_lagune.csv;ligne 18 (ML-1105);ATTENTION;désignation mal formatée : '  souris sans fil logitech m185 ';espaces/casse normalisés
+marche_lagune.csv;ligne 20 (ML-1119);ERREUR;prix inexploitable : 'Prix sur demande' (ancien prix 110 400 ignoré);pas de prix -> jamais retenu comme moins cher
+marche_lagune.csv;ligne 24 (ML-1147);INFO;article en rupture;écarté des comparaisons
+marche_lagune.csv;ligne 27 (ML-1168);ERREUR;prix inexploitable : '';pas de prix -> jamais retenu comme moins cher
+marche_lagune.csv;ligne 27 (ML-1168);INFO;article en rupture;écarté des comparaisons
+marche_lagune.csv;ligne 31 (ML-1147);ERREUR;doublon exact;ligne ignorée (première occurrence conservée)
+marche_lagune.csv;colonne prix;INFO;prix texte « 102 900 FCFA »;"chiffres extraits -> entier ; prix livraison incluse"
+baobab_shop.json;BB03433;INFO;stock = 0;écarté des comparaisons
+baobab_shop.json;BB07953;INFO;vendeur tiers : Partenaire vérifié;conservé (même prix payé)
+baobab_shop.json;BB10686;INFO;vendeur tiers : Partenaire vérifié;conservé (même prix payé)
+baobab_shop.json;BB11833;INFO;vendeur tiers : Partenaire vérifié;conservé (même prix payé)
+baobab_shop.json;BB16464;INFO;stock = 0;écarté des comparaisons
+baobab_shop.json;BB22196;INFO;vendeur tiers : Partenaire vérifié;conservé (même prix payé)
+baobab_shop.json;BB26722;INFO;vendeur tiers : Partenaire vérifié;conservé (même prix payé)
+baobab_shop.json;BB27999;ERREUR;amount = null (Philips Steam Iron);pas de prix -> jamais retenu comme moins cher
+baobab_shop.json;BB27999;INFO;vendeur tiers : Partenaire vérifié;conservé (même prix payé)
+baobab_shop.json;BB29464;INFO;vendeur tiers : Partenaire vérifié;conservé (même prix payé)
+baobab_shop.json;BB30124;INFO;stock = 0;écarté des comparaisons
+baobab_shop.json;BB30124;INFO;vendeur tiers : Partenaire vérifié;conservé (même prix payé)
+baobab_shop.json;pricing;INFO;prix payé = amount + delivery_fee (livraison hors prix affiché);frais de livraison ajoutés (par article)
+comptoir_ivoire.xlsx;lignes 1-2;INFO;titre + ligne vide avant les en-têtes;en-têtes repérés ligne 3
+comptoir_ivoire.xlsx;ligne 4 (CI200);ATTENTION;dernière mise à jour le 03/10/2026 (> 3 semaines);conservé, à signaler
+comptoir_ivoire.xlsx;ligne 6 (CI202);ATTENTION;dernière mise à jour le 03/10/2026 (> 3 semaines);conservé, à signaler
+comptoir_ivoire.xlsx;ligne 8 (CI204);ATTENTION;dernière mise à jour le 03/10/2026 (> 3 semaines);conservé, à signaler
+comptoir_ivoire.xlsx;ligne 9 (CI205);ATTENTION;dernière mise à jour le 03/10/2026 (> 3 semaines);conservé, à signaler
+comptoir_ivoire.xlsx;ligne 18 (CI214);INFO;quantité en rayon = 0;écarté des comparaisons
+comptoir_ivoire.xlsx;ligne 20 (CI216);ERREUR;prix stocké en texte : '279\u202f300';espaces (insécables) retirés -> entier
+comptoir_ivoire.xlsx;ligne 21 (CI217);INFO;quantité en rayon = 0;écarté des comparaisons
+comptoir_ivoire.xlsx;ligne 21 (CI217);ATTENTION;dernière mise à jour le 03/10/2026 (> 3 semaines);conservé, à signaler
+comptoir_ivoire.xlsx;prix;INFO;"prix payé = prix catalogue x (1 - remise) ; retrait en boutique (pas de livraison)";remise appliquée, arrondi au FCFA
+historique_prix.csv;fichier;INFO;"20876 lignes valides, aucun trou ni doublon ; Comptoir Ivoire = 1 prix/semaine (lundi), prix catalogue sans remise ; Baobab = amount sans livraison";prix en vigueur reporté jusqu'au changement suivant (Comptoir)
+rapprochement;Comptoir Ivoire CI200;ATTENTION;faute de frappe « samsun » dans 'Samsun Galaxy A15 128Go';corrigé en « samsung »
+contrôle historique;Marché Lagune ML-1021 (P04);ERREUR;prix aberrant 779 000 FCFA (historique au 31/10 : 77 900);corrigé en 77 900 (facteur 10, confirmé par l'historique)

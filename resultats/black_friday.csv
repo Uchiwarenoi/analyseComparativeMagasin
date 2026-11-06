@@ -1,0 +1,77 @@
+﻿enseigne;produit_id;nom;prix_moyen_BF_24-30nov2025;prix_moyen_annee;ecart_BF_vs_annee_pct;prix_le_plus_bas;date_prix_le_plus_bas;BF_vs_plus_bas_pct
+Marché Lagune;P01;Samsung Galaxy A15 128 Go;91157;104924;-13,1;90100;2025-11-30;1,2
+Marché Lagune;P02;Samsung Galaxy A25 128 Go;142114;159874;-11,1;140600;2025-11-28;1,1
+Marché Lagune;P03;Samsung Galaxy A55 256 Go;268014;302331;-11,4;265200;2025-11-28;1,1
+Marché Lagune;P04;Tecno Spark 20 128 Go;73571;82375;-10,7;72800;2025-11-30;1,1
+Marché Lagune;P05;Tecno Camon 30 256 Go;125329;142814;-12,2;124300;2025-11-30;0,8
+Marché Lagune;P06;Infinix Hot 40i 128 Go;60957;70441;-13,5;60200;2025-11-30;1,3
+Marché Lagune;P07;Infinix Note 40 256 Go;125971;141107;-10,7;125100;2025-11-27;0,7
+Marché Lagune;P08;Itel A70 64 Go;42200;47619;-11,4;41700;2025-11-28;1,2
+Marché Lagune;P09;Apple iPhone 13 128 Go;404643;453514;-10,8;398800;2025-11-26;1,5
+Marché Lagune;P10;Xiaomi Redmi Note 13 128 Go;125800;142178;-11,5;124000;2025-11-27;1,5
+Marché Lagune;P11;HP 250 G9 Core i5 8 Go 512 Go;369871;412084;-10,2;359500;2026-09-19;2,9
+Marché Lagune;P12;Lenovo IdeaPad 3 Core i3 8 Go 256 Go;292157;325386;-10,2;284500;2026-09-18;2,7
+Marché Lagune;P13;Dell Inspiron 15 Core i5 16 Go 512 Go;426657;471421;-9,5;410000;2026-09-09;4,1
+Marché Lagune;P14;Clé USB SanDisk 64 Go;5571;6281;-11,3;5500;2025-11-26;1,3
+Marché Lagune;P15;Disque dur externe Seagate 1 To;36529;40103;-8,9;34700;2026-09-17;5,3
+Marché Lagune;P16;Souris sans fil Logitech M185;8300;9436;-12,0;8200;2025-11-26;1,2
+Marché Lagune;P17;Imprimante HP DeskJet 2720e;39729;45102;-11,9;39200;2025-11-28;1,3
+Marché Lagune;P19;Écran Samsung 24 pouces;91957;102561;-10,3;90800;2026-09-02;1,3
+Marché Lagune;P20;Réfrigérateur Hisense 205 L;172643;194893;-11,4;171700;2025-11-28;0,5
+Marché Lagune;P21;Congélateur Nasco 200 L;157871;180819;-12,7;155600;2025-11-27;1,5
+Marché Lagune;P22;TV Samsung 43 pouces Crystal UHD;238329;266013;-10,4;235400;2025-11-25;1,2
+Marché Lagune;P23;TV Hisense 32 pouces;91514;102718;-10,9;90300;2025-11-29;1,3
+Marché Lagune;P24;Climatiseur LG 1 CV;239700;272130;-11,9;237800;2025-11-27;0,8
+Marché Lagune;P25;Ventilateur sur pied Binatone 16 pouces;19271;22238;-13,3;19100;2025-11-25;0,9
+Marché Lagune;P26;Mixeur Moulinex 1,5 L;28414;31449;-9,7;28000;2025-11-27;1,5
+Marché Lagune;P27;Fer à repasser Philips;14914;16652;-10,4;14700;2025-11-26;1,5
+Marché Lagune;P28;Micro-ondes Samsung 23 L;62357;70319;-11,3;61900;2025-11-28;0,7
+Marché Lagune;P30;Climatiseur Hisense 1,5 CV;273500;318597;-14,2;270200;2025-11-29;1,2
+Baobab Shop;P01;Samsung Galaxy A15 128 Go;92671;105995;-12,6;92100;2025-11-29;0,6
+Baobab Shop;P02;Samsung Galaxy A25 128 Go;134386;149387;-10,0;132700;2025-11-29;1,3
+Baobab Shop;P03;Samsung Galaxy A55 256 Go;248643;282740;-12,1;244700;2025-11-28;1,6
+Baobab Shop;P04;Tecno Spark 20 128 Go;67257;76323;-11,9;66400;2025-11-27;1,3
+Baobab Shop;P05;Tecno Camon 30 256 Go;121829;138727;-12,2;120500;2025-11-27;1,1
+Baobab Shop;P06;Infinix Hot 40i 128 Go;60171;69194;-13,0;59200;2025-11-24;1,6
+Baobab Shop;P07;Infinix Note 40 256 Go;118257;134515;-12,1;117600;2025-11-29;0,6
+Baobab Shop;P09;Apple iPhone 13 128 Go;382371;432451;-11,6;376500;2025-11-28;1,6
+Baobab Shop;P10;Xiaomi Redmi Note 13 128 Go;119043;136344;-12,7;117700;2025-11-24;1,1
+Baobab Shop;P11;HP 250 G9 Core i5 8 Go 512 Go;333100;372611;-10,6;325700;2026-09-17;2,3
+Baobab Shop;P12;Lenovo IdeaPad 3 Core i3 8 Go 256 Go;278786;311975;-10,6;274100;2026-09-17;1,7
+Baobab Shop;P14;Clé USB SanDisk 64 Go;5129;5881;-12,8;5100;2025-11-25;0,6
+Baobab Shop;P15;Disque dur externe Seagate 1 To;33214;37785;-12,1;32900;2025-11-28;1,0
+Baobab Shop;P16;Souris sans fil Logitech M185;7957;9018;-11,8;7900;2025-11-26;0,7
+Baobab Shop;P17;Imprimante HP DeskJet 2720e;39557;44918;-11,9;39100;2025-11-28;1,2
+Baobab Shop;P18;Routeur TP-Link Archer C6;25914;28850;-10,2;25200;2026-09-13;2,8
+Baobab Shop;P19;Écran Samsung 24 pouces;81400;92418;-11,9;80700;2025-11-27;0,9
+Baobab Shop;P20;Réfrigérateur Hisense 205 L;169829;190683;-10,9;168300;2025-11-24;0,9
+Baobab Shop;P22;TV Samsung 43 pouces Crystal UHD;222286;252570;-12,0;219900;2025-11-30;1,1
+Baobab Shop;P23;TV Hisense 32 pouces;86657;97831;-11,4;86000;2025-11-29;0,8
+Baobab Shop;P24;Climatiseur LG 1 CV;240600;271455;-11,4;238400;2025-11-27;0,9
+Baobab Shop;P26;Mixeur Moulinex 1,5 L;25986;29481;-11,9;25600;2025-11-27;1,5
+Baobab Shop;P27;Fer à repasser Philips;13343;14959;-10,8;13100;2025-11-26;1,9
+Baobab Shop;P28;Micro-ondes Samsung 23 L;56814;64826;-12,4;56000;2025-11-30;1,5
+Baobab Shop;P29;Bouilloire électrique 1,7 L;8529;9524;-10,5;8500;2025-11-25;0,3
+Baobab Shop;P30;Climatiseur Hisense 1,5 CV;265329;303288;-12,5;262500;2025-11-29;1,1
+Comptoir Ivoire;P01;Samsung Galaxy A15 128 Go;122500;116490;5,2;109400;2026-10-31;12,0
+Comptoir Ivoire;P02;Samsung Galaxy A25 128 Go;169100;160434;5,4;150300;2026-10-31;12,5
+Comptoir Ivoire;P04;Tecno Spark 20 128 Go;83000;79936;3,8;76300;2026-10-31;8,8
+Comptoir Ivoire;P06;Infinix Hot 40i 128 Go;74800;72915;2,6;70700;2026-10-31;5,8
+Comptoir Ivoire;P08;Itel A70 64 Go;47100;46203;1,9;45200;2026-10-26;4,2
+Comptoir Ivoire;P09;Apple iPhone 13 128 Go;475600;460898;3,2;443700;2026-10-31;7,2
+Comptoir Ivoire;P11;HP 250 G9 Core i5 8 Go 512 Go;423500;414624;2,1;376500;2026-09-14;12,5
+Comptoir Ivoire;P12;Lenovo IdeaPad 3 Core i3 8 Go 256 Go;330500;316652;4,4;281800;2026-09-14;17,3
+Comptoir Ivoire;P13;Dell Inspiron 15 Core i5 16 Go 512 Go;483000;467040;3,4;419300;2026-09-14;15,2
+Comptoir Ivoire;P14;Clé USB SanDisk 64 Go;6900;6576;4,9;5800;2026-09-07;19,0
+Comptoir Ivoire;P15;Disque dur externe Seagate 1 To;42900;41193;4,1;36800;2026-09-07;16,6
+Comptoir Ivoire;P16;Souris sans fil Logitech M185;9600;9391;2,2;8500;2026-09-07;12,9
+Comptoir Ivoire;P20;Réfrigérateur Hisense 205 L;218400;209038;4,5;198100;2026-10-31;10,2
+Comptoir Ivoire;P21;Congélateur Nasco 200 L;195600;187735;4,2;178500;2026-10-31;9,6
+Comptoir Ivoire;P22;TV Samsung 43 pouces Crystal UHD;276200;265995;3,8;254000;2026-10-31;8,7
+Comptoir Ivoire;P23;TV Hisense 32 pouces;106800;103021;3,7;98600;2026-10-31;8,3
+Comptoir Ivoire;P24;Climatiseur LG 1 CV;310700;299341;3,8;279300;2026-10-31;11,2
+Comptoir Ivoire;P25;Ventilateur sur pied Binatone 16 pouces;25500;24689;3,3;23700;2026-10-26;7,6
+Comptoir Ivoire;P26;Mixeur Moulinex 1,5 L;30300;29815;1,6;29200;2026-10-19;3,8
+Comptoir Ivoire;P27;Fer à repasser Philips;17200;16527;4,1;15700;2026-10-26;9,6
+Comptoir Ivoire;P28;Micro-ondes Samsung 23 L;74000;71442;3,6;68500;2026-10-31;8,0
+Comptoir Ivoire;P29;Bouilloire électrique 1,7 L;10100;9659;4,6;9200;2026-10-12;9,8

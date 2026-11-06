@@ -1,0 +1,24 @@
+﻿produit_id;nom;categorie;prix_Marché Lagune;prix_Baobab Shop;prix_Comptoir Ivoire;nb_enseignes;enseigne_moins_chere;prix_min;ecart_fcfa;ecart_pct
+P01;Samsung Galaxy A15 128 Go;Smartphone;;104000;92990;2;Comptoir Ivoire;92990;11010;11,8
+P02;Samsung Galaxy A25 128 Go;Smartphone;151500;142000;150300;3;Baobab Shop;142000;9500;6,7
+P04;Tecno Spark 20 128 Go;Smartphone;77900;75000;76300;3;Baobab Shop;75000;2900;3,9
+P05;Tecno Camon 30 256 Go;Smartphone;136900;135400;;2;Baobab Shop;135400;1500;1,1
+P06;Infinix Hot 40i 128 Go;Smartphone;69200;69500;67165;3;Comptoir Ivoire;67165;2335;3,5
+P07;Infinix Note 40 256 Go;Smartphone;132400;132700;;2;Marché Lagune;132400;300;0,2
+P09;Apple iPhone 13 128 Go;Smartphone;433700;417200;443700;3;Baobab Shop;417200;26500;6,4
+P10;Xiaomi Redmi Note 13 128 Go;Smartphone;136900;134100;;2;Baobab Shop;134100;2800;2,1
+P11;HP 250 G9 Core i5 8 Go 512 Go;Informatique;390800;354200;407000;3;Baobab Shop;354200;52800;14,9
+P12;Lenovo IdeaPad 3 Core i3 8 Go 256 Go;Informatique;309400;298200;287375;3;Comptoir Ivoire;287375;22025;7,7
+P14;Clé USB SanDisk 64 Go;Informatique;6100;7300;6200;3;Marché Lagune;6100;1200;19,7
+P15;Disque dur externe Seagate 1 To;Informatique;37600;38300;39500;3;Marché Lagune;37600;1900;5,1
+P16;Souris sans fil Logitech M185;Informatique;9200;;9200;2;Marché Lagune / Comptoir Ivoire;9200;0;0,0
+P17;Imprimante HP DeskJet 2720e;Informatique;44000;45700;;2;Marché Lagune;44000;1700;3,9
+P20;Réfrigérateur Hisense 205 L;Électroménager;186100;183000;168385;3;Comptoir Ivoire;168385;17715;10,5
+P21;Congélateur Nasco 200 L;Électroménager;176000;;151725;2;Comptoir Ivoire;151725;24275;16,0
+P22;TV Samsung 43 pouces Crystal UHD;Électroménager;251100;244400;;2;Baobab Shop;244400;6700;2,7
+P23;TV Hisense 32 pouces;Électroménager;;96000;88740;2;Comptoir Ivoire;88740;7260;8,2
+P24;Climatiseur LG 1 CV;Électroménager;256600;253300;279300;3;Baobab Shop;253300;26000;10,3
+P26;Mixeur Moulinex 1,5 L;Électroménager;;30900;29200;2;Comptoir Ivoire;29200;1700;5,8
+P27;Fer à repasser Philips;Électroménager;15700;;15700;2;Marché Lagune / Comptoir Ivoire;15700;0;0,0
+P28;Micro-ondes Samsung 23 L;Électroménager;67200;65400;68500;3;Baobab Shop;65400;3100;4,7
+P29;Bouilloire électrique 1,7 L;Électroménager;;11600;9200;2;Comptoir Ivoire;9200;2400;26,1
