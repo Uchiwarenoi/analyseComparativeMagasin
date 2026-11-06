@@ -134,26 +134,26 @@ Historique : 20876 lignes, 76 séries (enseigne, produit) de ≤ 365 points.
 
 | Étape | Temps (s) |
 |---|---|
-| Chargement des 3 enseignes (CSV + JSON + Excel) | 0.0107 |
-| Chargement historique + construction de l'index | 0.0591 |
-| Rapprochement avec le catalogue | 0.0155 |
+| Chargement des 3 enseignes (CSV + JSON + Excel) | 0.0299 |
+| Chargement historique + construction de l'index | 0.0604 |
+| Rapprochement avec le catalogue | 0.0112 |
 | Contrôle des prix avec l'historique | 0.0001 |
 | Comparatif + synthèse + panier | 0.0004 |
-| Analyse de l'historique (Black Friday, semaines, panier) | 0.0850 |
-| TOTAL (hors benchmark) | 0.1824 |
+| Analyse de l'historique (Black Friday, semaines, panier) | 0.0858 |
+| TOTAL (hors benchmark) | 0.1989 |
 
 **Benchmark** : 2000 recherches « prix de tel produit chez telle enseigne à telle date » (résultats identiques, vérifié) :
 
 | Méthode | Complexité par recherche | Temps pour 2000 recherches |
 |---|---|---|
-| Balayage de la liste des 20 876 lignes | O(n) | 1.704 s |
-| Index dict + liste triée + bisect | O(log m), m ≤ 365 | 0.00094 s |
+| Balayage de la liste des 20 876 lignes | O(n) | 1.687 s |
+| Index dict + liste triée + bisect | O(log m), m ≤ 365 | 0.00099 s |
 
-L'index est environ **1 804 fois plus rapide**. Choix retenus :
+L'index est environ **1 711 fois plus rapide**. Choix retenus :
 
 - **`dict` clé `(enseigne, produit_id)` -> séries** : accès direct en O(1) à la bonne série au lieu de filtrer 20 876 lignes ; construit en une passe O(n).
 - **Séries triées par date + `bisect`** : trouver le prix à une date coûte O(log m) (m ≤ 365) ; trier une fois coûte O(n log m) au chargement et sert ensuite à toutes les requêtes. Ça gère aussi Comptoir Ivoire (1 prix/semaine) : `bisect_right − 1` renvoie le dernier prix publié, sans stocker de lignes par jour.
 - **`dict` produit_id -> {enseigne: offre}** pour le comparatif : accès O(1), comparatif en O(P × S) = 30 × 3.
 - **Rapprochement** : 76 articles × 30 produits × quelques mots = quelques milliers de comparaisons, donc un simple balayage suffit ; avec un catalogue de 100 000 produits il faudrait un index inversé (mot -> produits) pour ne comparer que les candidats.
 - **Ensembles (`set`) de mots** pour l'intersection/union des libellés : O(taille du plus petit).
-- Bibliothèque standard uniquement (+ `openpyxl`) pour garder les coûts visibles ; l'historique tient en mémoire (≈ 20 k tuples), la mémoire est en O(n).
+- Bibliothèque standard uniquement (`openpyxl` facultatif) pour garder les coûts visibles ; l'historique tient en mémoire (≈ 20 k tuples), la mémoire est en O(n).

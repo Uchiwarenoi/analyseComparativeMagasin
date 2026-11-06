@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Analyse comparative de marché : Marché Lagune / Baobab Shop / Comptoir Ivoire.
 
-Usage :  python3 analyse.py   (lit ./donnees, écrit dans ./resultats ; options --data et --out)
+Usage :  python3 main.py   (analyse, écrit ./resultats, puis ouvre le menu ; options --sans-menu, --data, --out)
 
 Étapes : chargement (CSV, JSON, Excel) -> rapprochement avec le catalogue
 -> nettoyage/contrôles (journal) -> comparatif -> synthèse -> panier
 -> historique (Black Friday) -> mesures de temps.
-Bibliothèques : standard + openpyxl (lecture du .xlsx).
+Bibliothèques : uniquement la bibliothèque standard (openpyxl est utilisé s'il est installé, mais n'est pas nécessaire).
 """
+from __future__ import annotations
+
 import argparse
 import bisect
 import csv
@@ -25,7 +27,10 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
 
-import openpyxl
+try:                                   # openpyxl est facultatif : sinon lecture .xlsx avec la bibliothèque standard
+    import openpyxl
+except ImportError:
+    openpyxl = None
 
 ML, BB, CI = "Marché Lagune", "Baobab Shop", "Comptoir Ivoire"
 SOURCES = [ML, BB, CI]
@@ -194,10 +199,65 @@ def charger_baobab(chemin, j):
     return offres
 
 
+
+def lire_xlsx_standard(chemin):
+    """Lit la 1re feuille d'un .xlsx sans openpyxl (un .xlsx est un zip de fichiers XML). Retourne une liste de lignes."""
+    import zipfile
+    import xml.etree.ElementTree as ET
+    from datetime import datetime
+    ns = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+    with zipfile.ZipFile(chemin) as z:
+        noms = z.namelist()
+        textes = []
+        if "xl/sharedStrings.xml" in noms:
+            for si in ET.fromstring(z.read("xl/sharedStrings.xml")).iter(ns + "si"):
+                textes.append("".join(t.text or "" for t in si.iter(ns + "t")))
+        est_date = []                                   # style de cellule -> format date ?
+        if "xl/styles.xml" in noms:
+            st = ET.fromstring(z.read("xl/styles.xml"))
+            perso = {int(n.get("numFmtId")): n.get("formatCode", "").lower() for n in st.iter(ns + "numFmt")}
+            for xf in st.find(ns + "cellXfs").findall(ns + "xf"):
+                i = int(xf.get("numFmtId", 0))
+                code = perso.get(i, "")
+                est_date.append(14 <= i <= 22 or 45 <= i <= 47 or any(c in code for c in ("yy", "dd", "mm/")))
+        feuille = sorted(n for n in noms if n.startswith("xl/worksheets/sheet") and n.endswith(".xml"))[0]
+        lignes = []
+        for row in ET.fromstring(z.read(feuille)).iter(ns + "row"):
+            cellules = {}
+            for c in row.findall(ns + "c"):
+                col = 0
+                for ch in re.match(r"[A-Z]+", c.get("r")).group():
+                    col = col * 26 + ord(ch) - 64
+                t, v = c.get("t"), c.find(ns + "v")
+                if t == "inlineStr":
+                    val = "".join(x.text or "" for x in c.iter(ns + "t"))
+                elif v is None or v.text is None:
+                    val = None
+                elif t == "s":
+                    val = textes[int(v.text)]
+                elif t in ("str", "e"):
+                    val = v.text
+                elif t == "b":
+                    val = v.text == "1"
+                else:
+                    val = float(v.text)
+                    val = int(val) if val == int(val) else val
+                    s_ = int(c.get("s", 0))
+                    if s_ < len(est_date) and est_date[s_]:
+                        val = datetime(1899, 12, 30) + timedelta(days=val)
+                cellules[col] = val
+            while len(lignes) < int(row.get("r")) - 1:      # lignes vides absentes du XML (ex. ligne 2)
+                lignes.append(())
+            largeur = max(cellules, default=0)
+            lignes.append(tuple(cellules.get(i) for i in range(1, largeur + 1)))
+    return lignes
+
 def charger_comptoir(chemin, j):
     fich = "comptoir_ivoire.xlsx"
-    ws = openpyxl.load_workbook(chemin, data_only=True).worksheets[0]
-    lignes = list(ws.iter_rows(values_only=True))
+    if openpyxl is not None:
+        lignes = list(openpyxl.load_workbook(chemin, data_only=True).worksheets[0].iter_rows(values_only=True))
+    else:
+        lignes = lire_xlsx_standard(chemin)
     ent = next(i for i, l in enumerate(lignes) if l and l[0] == "Code")      # ligne d'en-têtes (titre au-dessus)
     j.add(fich, f"lignes 1-{ent}", "INFO", "titre + ligne vide avant les en-têtes", f"en-têtes repérés ligne {ent + 1}")
     cols = {c: i for i, c in enumerate(lignes[ent])}
@@ -354,7 +414,7 @@ class Historique:
         return cls(lignes)
 
     def prix_a(self, source, pid, d):
-        """Prix en vigueur à la date d (dernier prix publié à cette date ou avant) : O (log m)."""
+        """Prix en vigueur à la date d (dernier prix publié à cette date ou avant) : O(log m)."""
         k = (source, pid)
         if k not in self.dates:
             return None
@@ -500,6 +560,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default=str(Path(__file__).resolve().parent / "donnees"))
     ap.add_argument("--out", default=str(Path(__file__).resolve().parent / "resultats"))
+    ap.add_argument("--sans-menu", action="store_true", help="fait l'analyse et écrit les fichiers, sans ouvrir le menu")
     a = ap.parse_args()
     D, O = Path(a.data), Path(a.out)
     O.mkdir(parents=True, exist_ok=True)
@@ -668,11 +729,38 @@ def main():
 - **`dict` produit_id -> {enseigne: offre}** pour le comparatif : accès O(1), comparatif en O(P × S) = 30 × 3.
 - **Rapprochement** : 76 articles × 30 produits × quelques mots = quelques milliers de comparaisons, donc un simple balayage suffit ; avec un catalogue de 100 000 produits il faudrait un index inversé (mot -> produits) pour ne comparer que les candidats.
 - **Ensembles (`set`) de mots** pour l'intersection/union des libellés : O(taille du plus petit).
-- Bibliothèque standard uniquement (+ `openpyxl`) pour garder les coûts visibles ; l'historique tient en mémoire (≈ 20 k tuples), la mémoire est en O(n).
+- Bibliothèque standard uniquement (`openpyxl` facultatif) pour garder les coûts visibles ; l'historique tient en mémoire (≈ 20 k tuples), la mémoire est en O(n).
 """)
     (O / "rapport.md").write_text("\n".join(R), encoding="utf-8")
     j.ecrire(O / "journal_nettoyage.csv")
-    print("\n".join(R))
+    if not a.sans_menu:
+        menu("\n".join(R), O)
+
+
+# ----------------------------------------------------------------------------
+# Menu : une entrée par livrable demandé dans le LISEZ-MOI (lit le rapport déjà calculé)
+# ----------------------------------------------------------------------------
+def menu(rapport, dossier):
+    sections = {s.split(" ", 2)[1].rstrip("."): s for s in re.split(r"\n(?=## )", rapport) if s.startswith("## ")}
+    entrees = [("Chargement, nettoyage et rapprochement", "1"), ("Comparatif des prix", "2"), ("Synthèse", "3"),
+               ("Panier de rentrée", "4"), ("Historique : Black Friday et meilleures périodes", "5"),
+               ("Complexité et temps d'exécution", "6")]
+    print(f"\nAnalyse terminée. Fichiers écrits dans : {dossier}")
+    while True:
+        print("\n===== MENU =====")
+        for i, (nom, _) in enumerate(entrees, 1):
+            print(f" {i}. {nom}")
+        print(" 0. Quitter")
+        try:
+            choix = input("Votre choix : ").strip()
+        except EOFError:
+            return
+        if choix == "0":
+            return
+        if choix.isdigit() and 1 <= int(choix) <= len(entrees):
+            print("\n" + sections[entrees[int(choix) - 1][1]])
+        else:
+            print("Choix non valide.")
 
 
 if __name__ == "__main__":
