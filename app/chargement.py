@@ -2,8 +2,6 @@
 import csv
 import json
 import re
-import zipfile
-import xml.etree.ElementTree as ET
 from datetime import timedelta
 from pathlib import Path
 

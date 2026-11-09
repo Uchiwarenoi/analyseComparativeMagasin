@@ -1,4 +1,3 @@
-"""Normalisation des libellés et rapprochement avec le catalogue."""
 import re
 import unicodedata
 import difflib
@@ -7,41 +6,21 @@ from collections import Counter
 
 from app.common import BB
 
-SYNONYMES = [
-    (r"\bmicro[ -]?ondes?\b|\bmicrowave\b", "microondes"),
-    (r"\b(?:frigo|fridge|refrigerateur)\b", "refrigerateur"),
-    (r"\bfreezer\b", "congelateur"),
-    (r"\b(?:clim|climatiseur|air conditioner)\b", "climatiseur"),
-    (r"\b(?:ventilo|ventilateur|fan)\b", "ventilateur"),
-    (r"\b(?:monitor|ecran)\b", "ecran"),
-    (r"\bkettle\b", "bouilloire"),
-    (r"\belectric\b", "electrique"),
-    (r"\bblender\b", "mixeur"),
-    (r"\b(?:iron|fer)\b", "fer"),
-    (r"\bdd\b|\bhard drive\b", "disque dur"),
-    (r"\bmouse\b", "souris"),
-    (r"\bprinter\b", "imprimante"),
-    (r"\brouter\b", "routeur"),
-    (r"\bwireless\b", "sans fil"),
-    (r"\blaptop\b", "portable"),
-]
-
-
 MOTS_VIDES = {"a", "de", "du", "la", "le", "les", "et", "pc", "steam"}
 
 
 def normaliser(txt):
+    """Normalise un libellé SANS synonymes : seulement la casse, les accents, les espaces et les unités."""
     t = unicodedata.normalize("NFKD", txt)
-    t = "".join(c for c in t if not unicodedata.combining(c)).lower()
-    t = t.replace(" ", " ").replace("\xa0", " ")
-    t = re.sub(r"(\d),(\d)", r"\1.\2", t)                                   # 1,5 -> 1.5
-    t = re.sub(r"(\d+(?:\.\d+)?)\s*(?:gb|go)\b", r"\1go", t)                # 128 GB / 128Go -> 128go
+    t = "".join(c for c in t if not unicodedata.combining(c))     # é -> e
+    t = t.upper().lower()                                         # majuscules/minuscules : tout en minuscules
+    t = t.replace("\u00a0", " ").replace("\u202f", " ")           # espaces insécables
+    t = re.sub(r"(\d),(\d)", r"\1.\2", t)                         # 1,5 -> 1.5
+    t = re.sub(r"(\d+(?:\.\d+)?)\s*(?:gb|go)\b", r"\1go", t)      # 128 GB / 128Go -> 128go
     t = re.sub(r"(\d+(?:\.\d+)?)\s*(?:tb|to)\b", r"\1to", t)
-    t = re.sub(r"(\d+(?:\.\d+)?)\s*(?:cv|hp)\b", r"\1cv", t)                # 1HP == 1 CV
+    t = re.sub(r"(\d+(?:\.\d+)?)\s*(?:cv|hp)\b", r"\1cv", t)      # 1HP == 1 CV
     t = re.sub(r"(\d+(?:\.\d+)?)\s*l\b", r"\1l", t)
-    t = re.sub(r"(\d+)\s*(?:\"|pouces?\b|inch\b)", r"\1p", t)               # 24" == 24 pouces
-    for motif, rempl in SYNONYMES:
-        t = re.sub(motif, rempl, t)
+    t = re.sub(r"(\d+)\s*(?:\"|pouces?\b|inch\b)", r"\1p", t)     # 24" == 24 pouces
     return t
 
 
@@ -91,4 +70,3 @@ def rapprocher(offres, catalogue, j):
             o.produit_id = None
         vu[k] = o
     return [o for o in offres if o.produit_id]
-

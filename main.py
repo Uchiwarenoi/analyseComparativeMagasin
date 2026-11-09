@@ -1,14 +1,7 @@
-#!/usr/bin/env python3
-"""Point d’entrée du programme d’analyse comparative.
-
-Exécution : python main.py
-Options : --sans-menu, --data CHEMIN, --out CHEMIN
-"""
 import argparse
 import random
 import time
 import statistics
-import re
 from collections import Counter, defaultdict
 from datetime import date, timedelta
 from pathlib import Path

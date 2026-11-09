@@ -1,4 +1,3 @@
-"""Chargement, indexation et analyse de l’historique des prix."""
 import csv
 import bisect
 import statistics
